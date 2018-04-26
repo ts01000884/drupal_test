@@ -1,0 +1,59 @@
+<?php
+
+
+function bigcat($item)
+{
+
+    dpm($item);
+    dpm(t('here is bigcat!'));
+    //module_invoke_all('eat_number');
+    return $item;
+}
+
+
+
+
+
+//
+///**
+// * Implements hook_cat_select_number().
+// */
+//
+//function bigcat_cat_select_number($item)
+//{
+//    dpm('here use a HOOK!');
+//    return $item;
+//}
+//
+//function hook_cat_select_number($item)
+//{
+//    module_invoke_all('cat_select_number');
+//    dpm('here is HOOK!');
+//    return $item;
+//}
+
+/**
+ * Implements hook_help().
+ */
+function bigcat_help($path, $arg)
+{
+    if ($path == 'admin/help#cat') {
+        return t('A demonstration module.');
+    }
+}
+
+///**
+// * Implements hook_block_info().
+// */
+//function bigcat_block_info()
+//{
+//    $blocks = array();
+//    $blocks['list_modules'] = array(
+//        'info' => t('A listing of all of the enabled modules.'),
+//        'cache' => DRUPAL_NO_CACHE,
+//    );
+//    return $blocks;
+//}
+
+
+?>
