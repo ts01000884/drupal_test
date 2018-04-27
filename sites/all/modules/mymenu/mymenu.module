@@ -96,14 +96,14 @@ function mitter_form($form,&$form_state) {
     //return 'How are you !';
 }
 //
-//function _input_max_number($element, &$form_state){
+//function _input_max_number($element, &$form_state){   //較為好的限制方法 因為其可以自行對應$element
 //
 //    $check_number=$element['#value'];
 //    dpm($element);
 //    if($check_number=='0') {
 //
 //    }else if(((int)$check_number) == 0){
-//        form_error($element, t('請輸入整數數字!'));
+//        form_error($element, t('請輸入整數數字!'));      //輸入正確的$element 在錯誤時會提醒使用者位置
 //
 //    }else if(((int)$check_number>=500 ) || ((int)$check_number <=0)){
 //        form_error($element, t('請輸入500-0之間的數字'));
@@ -127,7 +127,10 @@ function starting_drupal_dev_form_validate($form, &$form_state) { //處理例外
     if($check_number=='0') {
 
     }else if(((int)$check_number) == 0){
+        //mitter_good][one 為當該格錯誤時 會提醒使用者錯誤位置
+        // 由於本結構分為兩階 所以在階層中分為 [mitter_good][one] 中間用][連結
         form_set_error('mitter_good][one', t('請輸入整數數字!'));
+
 
     }else if(((int)$check_number>=500 ) || ((int)$check_number <=0)){
         form_set_error('mitter_good][one', t('請輸入500-0之間的數字'));
