@@ -1,0 +1,154 @@
+<?php
+
+function event_list_menu() {
+    $items['event_list'] = array(                       //item 中的參數名為路徑
+        'title' => '活動',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('mitter_form'),
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,   //MENU_NORMAL_ITEM  MENU_CALLBACK
+    );
+
+    return $items;
+}
+
+function mitter_form($form,&$form_state) {
+
+    $form['description'] = array(
+        '#type' => 'item',
+        '#title' => t('mitter order menu'),
+
+    );
+
+
+
+
+
+    $form['mitter_good']=array(
+        '#type' =>'fieldset',
+        '#title' => t('mitter good item'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+        '#tree' => TRUE ,
+
+    );
+
+    $form['mitter_good']['one'] = array(
+        '#type' => 'textfield',
+        '#title' => t('特選牛'),
+        '#required' => TRUE,
+        '#default_value' => "0",
+//        '#element_validate' => array('_input_max_number'),
+        '#size' => 10,
+        '#maxlength' => 10,
+    );
+    $form['mitter_good']['two'] = array(
+        '#type' => 'textfield',
+        '#title' => t('特選豬'),
+        '#required' => TRUE,
+        '#default_value' => "0",
+
+        '#size' => 10,
+        '#maxlength' => 10,
+    );
+
+    $form['mitter_bad']=array(
+        '#type' =>'fieldset',
+        '#title' => t('mitter good item'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+        '#tree' => TRUE ,
+    );
+
+    $form['mitter_bad']['one'] = array(
+        '#type' => 'textfield',
+        '#title' => t('特選Gdd'),
+        '#required' => TRUE,
+        '#default_value' => "0",
+//        '#element_validate' => array('_input_max_number'),
+        '#size' => 10,
+        '#maxlength' => 10,
+    );
+    $form['mitter_bad']['two'] = array(
+        '#type' => 'textfield',
+        '#title' => t('特選X'),
+        '#required' => TRUE,
+        '#default_value' => "0",
+//        '#description' => "Please enter your first name.",
+        '#size' => 10,
+        '#maxlength' => 10,
+    );
+
+    $form['#validate'][] = 'starting_drupal_dev_form_validate';//驗證使用
+//    $form['year_of_birth'] = array(
+//        '#type' => 'date',
+//        '#title' => "送達日期",
+////        '#description' => '"',
+//
+//    );
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Submit',
+    );
+    return $form;
+
+
+    //return 'How are you !';
+}
+//
+//function _input_max_number($element, &$form_state){   //較為好的限制方法 因為其可以自行對應$element
+//
+//    $check_number=$element['#value'];
+//    dpm($element);
+//    if($check_number=='0') {
+//
+//    }else if(((int)$check_number) == 0){
+//        form_error($element, t('請輸入整數數字!'));      //輸入正確的$element 在錯誤時會提醒使用者位置
+//
+//    }else if(((int)$check_number>=500 ) || ((int)$check_number <=0)){
+//        form_error($element, t('請輸入500-0之間的數字'));
+//
+//    }
+//}
+
+
+
+
+
+
+
+function starting_drupal_dev_form_validate($form, &$form_state) { //處理例外限制
+
+
+    $check_number=$form_state['values']['mitter_good']['one'];
+    dpm($form_state['values']['mitter_good']);
+
+
+    if($check_number=='0') {
+
+    }else if(((int)$check_number) == 0){
+        //mitter_good][one 為當該格錯誤時 會提醒使用者錯誤位置
+        // 由於本結構分為兩階 所以在階層中分為 [mitter_good][one] 中間用][連結
+        form_set_error('mitter_good][one', t('請輸入整數數字!'));
+
+
+    }else if(((int)$check_number>=500 ) || ((int)$check_number <=0)){
+        form_set_error('mitter_good][one', t('請輸入500-0之間的數字'));
+
+    }
+}
+
+function mitter_form_submit($form, &$form_state) { // 按下 SUBMIT 後，處理數據
+
+    dpm($form_state);
+//
+//
+//    $radius = $form_state['values']['radius'];
+//    $area = $radius * $radius * M_PI;
+
+    drupal_set_message($form); // Output ................etc
+
+}
+
+
+?>
