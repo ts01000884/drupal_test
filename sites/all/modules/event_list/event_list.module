@@ -2,7 +2,7 @@
 
 function event_list_menu() {
     $items['event_list'] = array(                       //item 中的參數名為路徑
-        'title' => '活動申請',
+        'title' => '活動登記申請',
         'page callback' => 'drupal_get_form',
         'page arguments' => array('event_list_form'),
         'access callback' => TRUE,
@@ -14,29 +14,96 @@ function event_list_menu() {
 
 function event_list_form($form,&$form_state) {
 
-    $form['description'] = array(
-        '#type' => 'item',
-        '#title' => t('活動登記申請'),
+//    $form['description'] = array(
+//        '#type' => 'item',
+//        '#title' => t('活動登記申請'),
+//
+//    );
 
+
+    $form['event_title'] = array(
+        '#type' => 'textfield',
+        '#title' => t('活動名稱：'),
+        '#required' => TRUE,
+        '#default_value' => "",
+//        '#element_validate' => array('_input_max_number'),
+        '#size' => 10,
+        '#maxlength' => 10,
+    );
+    $form['event_subject'] = array(
+        '#type' => 'textfield',
+        '#title' => t('活動主旨：'),
+        '#required' => TRUE,
+        '#default_value' => "",
+//        '#element_validate' => array('_input_max_number'),
+        '#size' => 10,
+        '#maxlength' => 10,
     );
 
+
+    $time = REQUEST_TIME;
+    dpm($time);
     $date = '2008-12-31 00:00:00';
     $format = 'Y-m-d H:i';
-
-    $form['date2'] = array(
-        '#type' => 'date_select', // types 'date_popup', 'date_text' and 'date_timezone' are also supported. See .inc file.
-        '#title' => t('Date'),
-        '#default_value' => $date,
+    $form['event_startsingin_time'] = array(
+        '#type' => 'date_popup', // types date_select 'date_popup', 'date_text' and 'date_timezone' are also supported. See .inc file.
+        '#title' => t('活動報名開始時間：'),
+        '#default_value' => date($format, $_SERVER['REQUEST_TIME']),                                                    //預設時間
         '#date_format' => $format,
         '#date_label_position' => 'within', // See other available attributes and what they do in date_api_elements.inc
-        '#date_timezone' => 'America/Chicago', // Optional, if your date has a timezone other than the site timezone.
+        '#date_timezone' => 'asia/taipei', // Optional, if your date has a timezone other than the site timezone.
         '#date_increment' => 15, // Optional, used by the date_select and date_popup elements to increment minutes and seconds.
-        '#date_year_range' => '-3:+3', // Optional, used to set the year range (back 3 years and forward 3 years is the default).
+        '#date_year_range' => '-0:+1', // Optional, used to set the year range (back 3 years and forward 3 years is the default).
         '#datepicker_options' => array(), // Optional, as of 7.x-2.6+, used to pass in additional parameters from the jQuery Datepicker widget.
     );
 
+    $form['event_endsingin_time'] = array(
+        '#type' => 'date_popup', // types date_select 'date_popup', 'date_text' and 'date_timezone' are also supported. See .inc file.
+        '#title' => t('活動報名截止時間：'),
+        '#default_value' => date($format, $_SERVER['REQUEST_TIME']),                                                    //預設時間
+        '#date_format' => $format,
+        '#date_label_position' => 'within', // See other available attributes and what they do in date_api_elements.inc
+        '#date_timezone' => 'asia/taipei', // Optional, if your date has a timezone other than the site timezone.
+        '#date_increment' => 15, // Optional, used by the date_select and date_popup elements to increment minutes and seconds.
+        '#date_year_range' => '-0:+1', // Optional, used to set the year range (back 3 years and forward 3 years is the default).
+        '#datepicker_options' => array(), // Optional, as of 7.x-2.6+, used to pass in additional parameters from the jQuery Datepicker widget.
+    );
 
+    $form['event_start_time'] = array(
+        '#type' => 'date_popup', // types date_select 'date_popup', 'date_text' and 'date_timezone' are also supported. See .inc file.
+        '#title' => t('活動開始時間：'),
+        '#default_value' => date($format, $_SERVER['REQUEST_TIME']),                                                    //預設時間
+        '#date_format' => $format,
+        '#date_label_position' => 'within', // See other available attributes and what they do in date_api_elements.inc
+        '#date_timezone' => 'asia/taipei', // Optional, if your date has a timezone other than the site timezone.
+        '#date_increment' => 15, // Optional, used by the date_select and date_popup elements to increment minutes and seconds.
+        '#date_year_range' => '-0:+1', // Optional, used to set the year range (back 3 years and forward 3 years is the default).
+        '#datepicker_options' => array(), // Optional, as of 7.x-2.6+, used to pass in additional parameters from the jQuery Datepicker widget.
+    );
+    $form['event_end_time'] = array(
+        '#type' => 'date_popup', // types date_select 'date_popup', 'date_text' and 'date_timezone' are also supported. See .inc file.
+        '#title' => t('活動結束時間：'),
+        '#default_value' => date($format, $_SERVER['REQUEST_TIME']),                                                    //預設時間
+        '#date_format' => $format,
+        '#date_label_position' => 'within', // See other available attributes and what they do in date_api_elements.inc
+        '#date_timezone' => 'asia/taipei', // Optional, if your date has a timezone other than the site timezone.
+        '#date_increment' => 15, // Optional, used by the date_select and date_popup elements to increment minutes and seconds.
+        '#date_year_range' => '-0:+1', // Optional, used to set the year range (back 3 years and forward 3 years is the default).
+        '#datepicker_options' => array(), // Optional, as of 7.x-2.6+, used to pass in additional parameters from the jQuery Datepicker widget.
+    );
 
+    $form['event_content'] = array(
+        '#type' => 'textarea',
+        '#title' => t('活動內容：'),
+        '#required' => TRUE,
+        '#default_value' => "請輸入詳細活動名稱",
+
+    );
+
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Submit',
+    );
 
     return $form;
 
