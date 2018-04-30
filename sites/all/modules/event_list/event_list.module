@@ -14,13 +14,6 @@ function event_list_menu() {
 
 function event_list_form($form,&$form_state) {
 
-//    $form['description'] = array(
-//        '#type' => 'item',
-//        '#title' => t('活動登記申請'),
-//
-//    );
-
-
     $form['event_title'] = array(
         '#type' => 'textfield',
         '#title' => t('活動名稱：'),
@@ -39,13 +32,19 @@ function event_list_form($form,&$form_state) {
         '#size' => 10,
         '#maxlength' => 10,
     );
+    $form['event_content'] = array(
+        '#type' => 'textarea',
+        '#title' => t('活動內容：'),
+        '#required' => TRUE,
+        '#default_value' => "請輸入詳細活動名稱",
 
+    );
 
     $time = REQUEST_TIME;
-    dpm($time);
+
     $date = '2008-12-31 00:00:00';
     $format = 'Y-m-d H:i';
-    $form['event_startsingin_time'] = array(
+    $form['event_start_signin_time'] = array(
         '#type' => 'date_popup', // types date_select 'date_popup', 'date_text' and 'date_timezone' are also supported. See .inc file.
         '#title' => t('活動報名開始時間：'),
         '#default_value' => date($format, $_SERVER['REQUEST_TIME']),                                                    //預設時間
@@ -57,7 +56,7 @@ function event_list_form($form,&$form_state) {
         '#datepicker_options' => array(), // Optional, as of 7.x-2.6+, used to pass in additional parameters from the jQuery Datepicker widget.
     );
 
-    $form['event_endsingin_time'] = array(
+    $form['event_end_signin_time'] = array(
         '#type' => 'date_popup', // types date_select 'date_popup', 'date_text' and 'date_timezone' are also supported. See .inc file.
         '#title' => t('活動報名截止時間：'),
         '#default_value' => date($format, $_SERVER['REQUEST_TIME']),                                                    //預設時間
@@ -92,13 +91,7 @@ function event_list_form($form,&$form_state) {
         '#datepicker_options' => array(), // Optional, as of 7.x-2.6+, used to pass in additional parameters from the jQuery Datepicker widget.
     );
 
-    $form['event_content'] = array(
-        '#type' => 'textarea',
-        '#title' => t('活動內容：'),
-        '#required' => TRUE,
-        '#default_value' => "請輸入詳細活動名稱",
 
-    );
 
     $form['submit'] = array(
         '#type' => 'submit',
@@ -153,17 +146,56 @@ function event_list_form($form,&$form_state) {
 //    }
 //}
 //
-//function mitter_form_submit($form, &$form_state) { // 按下 SUBMIT 後，處理數據
+function event_list_form_submit($form, &$form_state) { // 按下 SUBMIT 後，處理數據
+
+
+
+
+    $noed = node_type_load("event");
+    dpm($form_state);
+    dpm($form_state['values']['event_subject']);
+
+    $new = new stdClass();
+    $new->type = "event";
+    $new->language = LANGUAGE_NONE;
+
+    $new->title =  $form_state['values']['event_title'] ;
+
+
+    $new->field_event_subject[LANGUAGE_NONE][0]['value'] = $form_state['values']['event_subject'];
+    $new->body[LANGUAGE_NONE][0]['value'] =  $form_state['values']['event_content'] ;
+    $new->field_event_start_signin_time[LANGUAGE_NONE][0]['value'] = strtotime($form_state['values']['event_start_signin_time']);
+
+
+    $new->field_event_end_signin_time[LANGUAGE_NONE][0]['value'] =  strtotime($form_state['values']['event_end_signin_time']) ;
+    $new->field_event_start_time[LANGUAGE_NONE][0]['value'] =  strtotime($form_state['values']['event_start_time']) ;
+    $new->	field_event_end_time[LANGUAGE_NONE][0]['value'] =  strtotime($form_state['values']['event_end_time']) ;
+
+    node_object_prepare($new);              //才有登入狀態
+    node_save($new);
+
+
+
+//    $new->type = "event";
+//    $new->language = LANGUAGE_NONE;
+//    node_object_prepare($new);
 //
-//    dpm($form_state);
-////
-////
-////    $radius = $form_state['values']['radius'];
-////    $area = $radius * $radius * M_PI;
+//    $new->field_event_time[LANGUAGE_NONE][0]['value'] = time();
+//     $new->field_event_start_time[LANGUAGE_NONE][0]['value'] = strtotime('+1 month',REQUEST_TIME);
+//    node_save($new);
+//
+//   $node = node_load(2);
+//   dpm($node);
+//   dpm($node->field_event_start_time[LANGUAGE_NONE][0]['value']);
+//    $field_event_time = field_get_items('node',$node,'field_event_start_time',LANGUAGE_NONE);
+//    dpm($field_event_time);
+//
+//    $radius = $form_state['values']['radius'];
+//    $area = $radius * $radius * M_PI;
 //
 //    drupal_set_message($form); // Output ................etc
-//
-//}
+
+}
 
 
 ?>
