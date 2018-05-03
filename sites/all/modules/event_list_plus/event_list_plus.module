@@ -1,0 +1,61 @@
+<?php
+
+function event_list_plus_form_alter(&$form, $form_state, $form_id)
+{
+//    dpm($form_id);
+    if ($form_id == 'event_list_form') {
+        //($form_id=='user_login_block' || $form_id=='user_login') 修改多个表单
+
+        $form['event_subject']['#element_validate'] = array('_input_no_number');   //'name'控件大小自适应
+        $form['event_title']['#element_validate'] = array('_input_no_number');
+
+
+//        設定關於event_title的ajax參數
+        $form['event_title']['#ajax'] = array(
+            'callback' => 'event_list_form_callback',
+            'wrapper' => 'event-list-form-wrapper',
+        );
+
+        if(isset($form_state['values']['event_title']) && _is_have_number($form_state['values']['event_title'])){
+
+            $form['event_title']['#description']='請不要輸入含有數字的內容！';
+        }
+        $form['event_title']['#prefix']='<div id="event-list-form-wrapper">';
+        $form['event_title']['#suffix']='</div>';
+
+
+
+
+
+    }
+}
+function _is_have_number($numer){
+    $standard_A = "/([0-9]+)/";
+    if (preg_match($standard_A, $numer, $result)) {
+
+        return True;
+    } else {
+        return False;
+    }
+}
+
+function _input_no_number($element, &$form_state)
+{   //較為好的限制方法 因為其可以自行對應$element
+
+//    dpm($element);
+    $check_str = $element['#value'];
+
+
+    if (_is_have_number($check_str)) {
+
+        form_error($element, t('請勿再標題及目標輸入數字！'));;
+
+    }
+}
+
+function event_list_form_callback($form,&$form_sate){
+//    dpm($form_sate);
+    return $form['event_title'];
+}
+
+?>

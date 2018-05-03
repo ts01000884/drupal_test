@@ -1,0 +1,8 @@
+name = event_list_plus
+package = Hamiplay
+version = "7.x-1.0"
+core = 7.x
+files[] = event_list_plus.module
+description="為event_list module增加標題以及主旨的輸入內容限制！"
+
+datestamp = "1804251435"

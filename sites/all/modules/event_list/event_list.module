@@ -222,6 +222,21 @@ function event_list_form($form,&$form_state) {
 
     $date = '2008-12-31 00:00:00';
     $format = 'Y-m-d H:i';
+
+    $form['event_time'] = array(
+        '#type' => 'date_popup', // types date_select 'date_popup', 'date_text' and 'date_timezone' are also supported. See .inc file.
+        '#title' => t('活動時間：'),
+        '#default_value' => date($format, $_SERVER['REQUEST_TIME']),                                                    //預設時間
+        '#date_format' => $format,
+        '#date_label_position' => 'within', // See other available attributes and what they do in date_api_elements.inc
+        '#date_timezone' => 'asia/taipei', // Optional, if your date has a timezone other than the site timezone.
+        '#date_increment' => 15, // Optional, used by the date_select and date_popup elements to increment minutes and seconds.
+        '#date_year_range' => '-0:+1', // Optional, used to set the year range (back 3 years and forward 3 years is the default).
+        '#datepicker_options' => array(), // Optional, as of 7.x-2.6+, used to pass in additional parameters from the jQuery Datepicker widget.
+    );
+
+
+
     $form['event_start_signin_time'] = array(
         '#type' => 'date_popup', // types date_select 'date_popup', 'date_text' and 'date_timezone' are also supported. See .inc file.
         '#title' => t('活動報名開始時間：'),

@@ -63,7 +63,7 @@ function event_list(){
 //    dpm($output1);
 //    Drupal.settings.basePath+'sites/all/modules/event_list/img/red.gif'.
 
-    $output = theme('event_list',array('event_node_list'=> $nodes,'img_path'=>'sites/all/modules/event_list/img/red.gif'));//定义模板waterfall_content
+    $output = theme('event_list',array('event_node_list'=> $output1));//定义模板waterfall_content
 
 
 
