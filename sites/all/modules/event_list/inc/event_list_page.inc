@@ -61,13 +61,22 @@ function event_list(){
 //
     $output =array();
 //    dpm($output1);
-    $output = theme('event_list',array('event_node_list'=> $nodes));//定义模板waterfall_content
+//    Drupal.settings.basePath+'sites/all/modules/event_list/img/red.gif'.
+
+    $output = theme('event_list',array('event_node_list'=> $nodes,'img_path'=>'sites/all/modules/event_list/img/red.gif'));//定义模板waterfall_content
 
 
 
     return $output;
 }
 
+
+function get_chinese_weekday($weekday)
+{
+//    $weekday  = date('w', strtotime($datetime));
+    $weeklist = array('日', '一', '二', '三', '四', '五', '六');
+    return '星期' . $weeklist[$weekday];
+}
 
 
 
