@@ -10,8 +10,9 @@ function event_list_menu() {
     );
     $items['event_list'] = array(                       //item 中的參數名為路徑
         'title' => '活動列表',
-        'page callback' => 'event_node_view',
+        'page callback' => 'event_list',     //event_list_theme event_node_view
         //'page arguments' => array('event_list_form'),
+        'file' => 'inc/event_list_page.inc',
         'access callback' => TRUE,
         'type' => MENU_NORMAL_ITEM,   //MENU_NORMAL_ITEM  MENU_CALLBACK
     );
@@ -31,41 +32,71 @@ function event_node_view() {
     $query->propertyOrderBy('created', 'DESC');
     $query_result = $query->execute();
 
-
     if (isset($query_result['node'])) {
         // EFQ query results are keyed by entity ID
         $node_ids = array_keys($query_result['node']);
         $nodes = node_load_multiple($node_ids);
     }
 
-
     $nid = 50;         // set it to the node id you want to display
     $nid1=49;
 
-    dpm($nodes);
+//    dpm($nodes);
 
     foreach($nodes as $nid){
 
         dpm($nid->nid);
         $output[] =node_page_view(node_load($nid->nid));
 //        $output[] =node_page_view(node_load($nid));
+
     }
 
 
-    dpm($nid1);
+//    dpm($nid1);
 //
 //    $output =node_page_view(node_load($nid1));
 //    $output[] =node_page_view(node_load($nid));
 //    dpm($output);
-    dpm($output);
+//    dpm($output);
+    $output1 = theme('event_node_list', array('items' => $output));
     drupal_set_title('活動列表');  //網頁標題明
-    return $output;
+
+    return $output1;
 
 
 }
 
 
 
+
+
+
+
+
+
+
+
+/**
+ * Implements hook_theme().
+ */
+function event_list_theme() {
+    $path = drupal_get_path('module', 'event_list') . '/tpl';
+    dpm('有載入event_list_theme！');
+
+return array(
+
+    'event_list' => array(
+
+        'template' => 'event_list',
+        'arguments' => array('event_node_list' => NULL, 'title' => NULL),
+       // 'variables' => array(),
+
+        'path' => $path,
+
+    ),
+
+);
+}
 //
 ///**
 // * Implementation of hook_view().
@@ -124,10 +155,10 @@ function event_node_view() {
 
 //function event_list_theme(){
 //    return array( //返回theme 数组
-//        'event_list_nodeview' => array( // 给定义的theme 定义一个名称
-//            'arguments' => array('title' => NULL, 'teaser' => NULL, 'link' => NULL), //这些都是要传递的参数，具体是在使用 theme('hot_news',arg1,arg2,arg3),这时使用到。
-//            'template' => 'event_list_th', //模板名称，它会自动搜索hevent_list_th.tpl.php模板文件
-//            'file' => 'event_list_page.inc', //这个是定义相关函数的文件，根据需要自行定义。
+//        'event_list_theme' => array( // 给定义的theme 定义一个名称
+////            'arguments' => array('title' => NULL, 'teaser' => NULL, 'link' => NULL), //这些都是要传递的参数，具体是在使用 theme('hot_news',arg1,arg2,arg3),这时使用到。
+//            'template' => 'event_list', //模板名称，它会自动搜索hevent_list_th.tpl.php模板文件
+////            'file' => 'event_list_page.inc', //这个是定义相关函数的文件，根据需要自行定义。
 ////            'path' =>drupal_get_path('module', 'modulename'),
 ////得到文件路径，如果theme('hot_news',arg)在template.php里面使用，需要告诉drupal具体位置，
 ////如果不定义，且如果在template使用，它只能在template.php同目录下查找。默认和主题同目录。
@@ -137,7 +168,7 @@ function event_node_view() {
 //        ),
 //    );
 //}
-//
+
 //function event_list_theme() {
 //    return array(
 //        'event_list_nodeview' => array(//名稱
@@ -340,8 +371,8 @@ function event_list_form_submit($form, &$form_state) { // 按下 SUBMIT 後，�
         $node_ids = array_keys($query_result['node']);
         $nodes = node_load_multiple($node_ids);
     }
-    dpm($nodes);
-
+//    dpm($nodes);
+//
 
 
 //    $new->type = "event";

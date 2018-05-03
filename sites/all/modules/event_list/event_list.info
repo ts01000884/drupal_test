@@ -2,4 +2,7 @@ name = event_list
 package = Hamiplay
 version = "7.x-1.0"
 core = 7.x
+files[] = event_list.module
+stylesheets[all][] = css/main.css
+stylesheets[all][] = css/index.css
 datestamp = "1804251435"
