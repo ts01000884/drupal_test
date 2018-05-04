@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="198a7431-9527-43e4-a744-f34b7abe53c8" name="預設" comment="">
-      <change afterPath="$PROJECT_DIR$/sites/all/modules/event_list_plus/event_list_plus.info" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sites/all/modules/event_list_plus/event_list_plus.module" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sites/all/modules/event_list/event_list.module" beforeDir="false" afterPath="$PROJECT_DIR$/sites/all/modules/event_list/event_list.module" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sites/all/modules/event_list/inc/event_list_page.inc" beforeDir="false" afterPath="$PROJECT_DIR$/sites/all/modules/event_list/inc/event_list_page.inc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sites/all/modules/event_list/tpl/event_list.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/sites/all/modules/event_list/tpl/event_list.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sites/all/modules/event_list_plus/event_list_plus.module" beforeDir="false" afterPath="$PROJECT_DIR$/sites/all/modules/event_list_plus/event_list_plus.module" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,11 +20,8 @@
       <file leaf-file-name="event_list.module" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list/event_list.module">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="192" column="24" selection-start-line="192" selection-start-column="9" selection-end-line="192" selection-end-column="24" />
-              <folding>
-                <element signature="n#event_node_view#0;n#!!top" />
-              </folding>
+            <state relative-caret-position="2164">
+              <caret line="289" column="2" selection-start-line="289" selection-start-column="2" selection-end-line="298" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -32,10 +29,10 @@
       <file leaf-file-name="event_list_page.inc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list/inc/event_list_page.inc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
+            <state relative-caret-position="609">
               <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
               <folding>
-                <marker date="1525334563365" expanded="true" signature="1204:1219" ph="..." />
+                <marker date="1525413821719" expanded="true" signature="1209:1224" ph="..." />
               </folding>
             </state>
           </provider>
@@ -50,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="event_list_plus.module" pinned="false" current-in-tab="true">
+      <file leaf-file-name="event_list_plus.module" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list_plus/event_list_plus.module">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="63" selection-start-line="20" selection-start-column="63" selection-end-line="20" selection-end-column="63" />
+            <state relative-caret-position="265">
+              <caret line="46" column="20" lean-forward="true" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -62,17 +59,17 @@
       <file leaf-file-name="event_list.info" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list/event_list.info">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+            <state relative-caret-position="120">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="event_list.tpl.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="event_list.tpl.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list/tpl/event_list.tpl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="90" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="90" />
+            <state relative-caret-position="345">
+              <caret line="23" column="51" selection-start-line="23" selection-start-column="51" selection-end-line="23" selection-end-column="51" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -104,10 +101,11 @@
       <find>content</find>
       <find>event_subject</find>
       <find>活動列表</find>
-      <find>dpm</find>
       <find>ctivity-date .month</find>
       <find>.activity-date .day</find>
       <find>var_</find>
+      <find>dpm</find>
+      <find>event_list_form</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -137,11 +135,11 @@
         <option value="$PROJECT_DIR$/sites/all/themes/event_list/template.php" />
         <option value="$PROJECT_DIR$/sites/all/modules/event_list/event_list.info" />
         <option value="$PROJECT_DIR$/sites/all/modules/event_list/css/index.css" />
-        <option value="$PROJECT_DIR$/sites/all/modules/event_list/tpl/event_list.tpl.php" />
-        <option value="$PROJECT_DIR$/sites/all/modules/event_list/event_list.module" />
-        <option value="$PROJECT_DIR$/sites/all/modules/event_list/inc/event_list_page.inc" />
         <option value="$PROJECT_DIR$/sites/all/modules/event_list_plus/event_list_plus.info" />
         <option value="$PROJECT_DIR$/sites/all/modules/event_list_plus/event_list_plus.module" />
+        <option value="$PROJECT_DIR$/sites/all/modules/event_list/tpl/event_list.tpl.php" />
+        <option value="$PROJECT_DIR$/sites/all/modules/event_list/inc/event_list_page.inc" />
+        <option value="$PROJECT_DIR$/sites/all/modules/event_list/event_list.module" />
       </list>
     </option>
   </component>
@@ -325,12 +323,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1524710065996</updated>
-      <workItem from="1524710067534" duration="71238000" />
+      <workItem from="1524710067534" duration="84116000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71238000" />
+    <option name="totallyTimeSpent" value="84116000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1367" height="877" extended-state="0" />
@@ -564,20 +562,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list/tpl/event_list.tpl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="90" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="90" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list/event_list.info">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
@@ -588,30 +576,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list/event_list.module">
+    <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list_plus/event_list_plus.module">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="192" column="24" selection-start-line="192" selection-start-column="9" selection-end-line="192" selection-end-column="24" />
-          <folding>
-            <element signature="n#event_node_view#0;n#!!top" />
-          </folding>
+        <state relative-caret-position="265">
+          <caret line="46" column="20" lean-forward="true" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list/inc/event_list_page.inc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
+        <state relative-caret-position="609">
           <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
           <folding>
-            <marker date="1525334563365" expanded="true" signature="1204:1219" ph="..." />
+            <marker date="1525413821719" expanded="true" signature="1209:1224" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list_plus/event_list_plus.module">
+    <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list/event_list.module">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="63" selection-start-line="20" selection-start-column="63" selection-end-line="20" selection-end-column="63" />
+        <state relative-caret-position="2164">
+          <caret line="289" column="2" selection-start-line="289" selection-start-column="2" selection-end-line="298" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list/tpl/event_list.tpl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="51" selection-start-line="23" selection-start-column="51" selection-end-line="23" selection-end-column="51" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

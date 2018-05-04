@@ -20,55 +20,58 @@ function event_list_menu() {
 
     return $items;
 }
-function event_node_view() {
-
-    $node_type = 'event';
-
-    $query = new EntityFieldQuery();
-    $query->entityCondition('entity_type', 'node');
-    $query->entityCondition('bundle', 'event','=');
-    $query->propertyCondition('type', $node_type);
-    $query->propertyCondition('status', 1);
-    $query->propertyOrderBy('created', 'DESC');
-    $query_result = $query->execute();
-
-    if (isset($query_result['node'])) {
-        // EFQ query results are keyed by entity ID
-        $node_ids = array_keys($query_result['node']);
-        $nodes = node_load_multiple($node_ids);
-    }
-
-    $nid = 50;         // set it to the node id you want to display
-    $nid1=49;
-
-//    dpm($nodes);
-
-    foreach($nodes as $nid){
-
-        dpm($nid->nid);
-        $output[] =node_page_view(node_load($nid->nid));
-//        $output[] =node_page_view(node_load($nid));
-
-    }
 
 
-//    dpm($nid1);
 //
-//    $output =node_page_view(node_load($nid1));
-//    $output[] =node_page_view(node_load($nid));
-//    dpm($output);
-//    dpm($output);
-    $output1 = theme('event_node_list', array('items' => $output));
-    drupal_set_title('活動列表');  //網頁標題明
-
-    return $output1;
-
-
-}
-
-
-
-
+//
+//function event_node_view() {
+//
+//    $node_type = 'event';
+//
+//    $query = new EntityFieldQuery();
+//    $query->entityCondition('entity_type', 'node');
+//    $query->entityCondition('bundle', 'event','=');
+//    $query->propertyCondition('type', $node_type);
+//    $query->propertyCondition('status', 1);
+//    $query->propertyOrderBy('created', 'DESC');
+//    $query_result = $query->execute();
+//
+//    if (isset($query_result['node'])) {
+//        // EFQ query results are keyed by entity ID
+//        $node_ids = array_keys($query_result['node']);
+//        $nodes = node_load_multiple($node_ids);
+//    }
+//
+//    $nid = 50;         // set it to the node id you want to display
+//    $nid1=49;
+//
+////    dpm($nodes);
+//
+//    foreach($nodes as $nid){
+//
+//        dpm($nid->nid);
+//        $output[] =node_page_view(node_load($nid->nid));
+////        $output[] =node_page_view(node_load($nid));
+//
+//    }
+//
+//
+////    dpm($nid1);
+////
+////    $output =node_page_view(node_load($nid1));
+////    $output[] =node_page_view(node_load($nid));
+//
+//    $output1 = theme('event_node_list', array('items' => $output));
+//    drupal_set_title('活動列表');  //網頁標題明
+//
+//    return $output1;
+//
+//
+//}
+//
+//
+//
+//
 
 
 
@@ -218,9 +221,7 @@ function event_list_form($form,&$form_state) {
 
     );
 
-    $time = REQUEST_TIME;
 
-    $date = '2008-12-31 00:00:00';
     $format = 'Y-m-d H:i';
 
     $form['event_time'] = array(
@@ -294,7 +295,7 @@ function event_list_form($form,&$form_state) {
     return $form;
 
 
-    //return 'How are you !';
+
 }
 //
 //function _input_max_number($element, &$form_state){   //較為好的限制方法 因為其可以自行對應$element
@@ -341,19 +342,11 @@ function event_list_form($form,&$form_state) {
 //
 function event_list_form_submit($form, &$form_state) { // 按下 SUBMIT 後，處理數據
 
-
-
-
-    $noed = node_type_load("event");
-//    dpm($form_state);
-//    dpm($form_state['values']['event_subject']);
-
     $new = new stdClass();
     $new->type = "event";
     $new->language = LANGUAGE_NONE; //und zh-hant
 
     $new->title =  $form_state['values']['event_title'] ;
-
 
     $new->field_event_subject[LANGUAGE_NONE][0]['value'] = $form_state['values']['event_subject'];
     $new->body[LANGUAGE_NONE][0]['value'] =  $form_state['values']['event_content'] ;
@@ -362,32 +355,13 @@ function event_list_form_submit($form, &$form_state) { // 按下 SUBMIT 後，�
 
     $new->field_event_end_signin_time[LANGUAGE_NONE][0]['value'] =  strtotime($form_state['values']['event_end_signin_time']) ;
     $new->field_event_start_time[LANGUAGE_NONE][0]['value'] =  strtotime($form_state['values']['event_start_time']) ;
-    $new->	field_event_end_time[LANGUAGE_NONE][0]['value'] =  strtotime($form_state['values']['event_end_time']) ;
+    $new->field_event_end_time[LANGUAGE_NONE][0]['value'] =  strtotime($form_state['values']['event_end_time']) ;
 
     node_object_prepare($new);              //才有登入狀態
     node_save($new);
 
 
 
-
-    $node_type = 'event';
-
-    $query = new EntityFieldQuery();
-    $query->entityCondition('entity_type', 'node');
-    $query->entityCondition('bundle', 'event','=');
-    $query->propertyCondition('type', $node_type);
-    $query->propertyCondition('status', 1);
-    $query->propertyOrderBy('created', 'DESC');
-    $query_result = $query->execute();
-
-
-    if (isset($query_result['node'])) {
-        // EFQ query results are keyed by entity ID
-        $node_ids = array_keys($query_result['node']);
-        $nodes = node_load_multiple($node_ids);
-    }
-//    dpm($nodes);
-//
 
 
 //    $new->type = "event";

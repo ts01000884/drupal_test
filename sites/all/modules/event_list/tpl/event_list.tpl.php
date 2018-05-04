@@ -1,5 +1,5 @@
 <!--<pre>-->
-<!--    --><?php dpm($event_node_list); ?>
+<!--    --><?php //dpm($event_node_list); ?>
 <!---->
 <!--</pre>-->
 

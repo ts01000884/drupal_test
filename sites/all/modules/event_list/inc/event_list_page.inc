@@ -42,12 +42,15 @@ function event_list(){
     $query->propertyOrderBy('created', 'DESC');
     $query_result = $query->execute();
 
-    $rows = array();
+
 
     if (isset($query_result['node'])) {
+
         // EFQ query results are keyed by entity ID
         $node_ids = array_keys($query_result['node']);
+
         $nodes = node_load_multiple($node_ids);
+//        dpm($nodes);
     }
 
     foreach($nodes as $nid){
@@ -58,12 +61,10 @@ function event_list(){
 //        $output[] =node_page_view(node_load($nid));
 
     }
-//
-    $output =array();
 //    dpm($output1);
-//    Drupal.settings.basePath+'sites/all/modules/event_list/img/red.gif'.
 
-    $output = theme('event_list',array('event_node_list'=> $output1));//定义模板waterfall_content
+
+    $output = theme('event_list',array('event_node_list'=> $nodes));//定义模板waterfall_content
 
 
 
