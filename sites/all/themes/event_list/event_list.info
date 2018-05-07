@@ -7,8 +7,7 @@ core = 7.x
 
 stylesheets[all][] = css/main.css
 stylesheets[all][] = css/index.css
-stylesheets[all][] = css/colors.css
-stylesheets[print][] = css/print.css
+
 
 regions[header] = Header
 regions[help] = Help

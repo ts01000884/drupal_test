@@ -1,9 +1,9 @@
 <!--<pre>-->
-<!--    --><?php //dpm($event_node_list); ?>
+<!--    --><?php dpm($title); ?>
 <!---->
 <!--</pre>-->
 
-
+<?php print render($title); ?>
 <div id="lastest_event_container" class="lastest_event_container">
     <div class="lastest_event_head">
         <div class="fl cell"><img src="<?php echo path_to_theme() . '/img/red.gif'; ?>" height="40"></div>

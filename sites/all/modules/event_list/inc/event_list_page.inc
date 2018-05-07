@@ -3,34 +3,7 @@
 
 function event_list(){
     $path = drupal_get_path('module', 'event_list');
-
-
-
     drupal_add_css($path . '/css/style.css');
-//
-//    $output = '';
-//
-//    $query = db_select('node','n')->extend('PagerDefault');
-//
-//    $query->fields('n')->limit(10);
-//
-//    $objects = $query->execute()->fetchAll();
-//
-//    $rows = array();
-//
-//    foreach ($objects as $key=>$object) {
-//
-//        $row = array();
-//
-//        $row['nid'] = $object -> nid;
-//
-//        $row['title'] = $object -> title;
-//
-//        $rows[] = $row;
-//
-//    }
-
-
 
     $node_type = 'event';
 
@@ -43,7 +16,6 @@ function event_list(){
     $query_result = $query->execute();
 
 
-
     if (isset($query_result['node'])) {
 
         // EFQ query results are keyed by entity ID
@@ -52,23 +24,57 @@ function event_list(){
         $nodes = node_load_multiple($node_ids);
 //        dpm($nodes);
     }
-
-    foreach($nodes as $nid){
-        $output1[]=node_load($nid->nid);
-
-//        dpm($nid->nid);
-//        $output1[] =node_page_view(node_load($nid->nid));
-//        $output[] =node_page_view(node_load($nid));
-
-    }
+//
+//    foreach($nodes as $nid){
+//        $output1[]=node_load($nid->nid);
+//
+////        dpm($nid->nid);
+////        $output1[] =node_page_view(node_load($nid->nid));
+////        $output[] =node_page_view(node_load($nid));
+//
+//    }
 //    dpm($output1);
 
 
-    $output = theme('event_list',array('event_node_list'=> $nodes));//定义模板waterfall_content
+//    $output = theme('event_list',array('event_node_list'=> $nodes));//定义模板waterfall_content
+
+    //
+    $element = array(
+        '#prefix' => '<div class="less-simple">',
+        '#suffix' => '!</div>',
+        'kitten' => array(
+            '#type' => 'link',
+            '#title' => t('Kill me'),
+            '#href' => 'admin/core/hack',
+        ),
+        'separator' => array(
+            '#markup' => '<br />',
+        ),
+        'domo' => array(
+            '#theme' => 'username',
+            '#account' => '$account',
+        ),
+    );
 
 
+
+
+    $output = theme('hello',array());
+    $output .=theme('event_list',array('event_node_list'=> $nodes,'title' => $element));//定义模板waterfall_content
 
     return $output;
+}
+
+
+function event_list_page_alter(&$page) {
+    //把搜索栏移到底部.
+
+    dpm($page);
+
+//    $page['footer']['search_form'] = $page['sidebar_first']['search_form'];
+//    unset($page['sidebar_first']['search_form']);
+//    // 去掉"powered by Drupal"区域显示
+//    unset($page['footer']['system_powered-by']);
 }
 
 

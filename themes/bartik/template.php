@@ -36,6 +36,18 @@ function bartik_process_html(&$variables) {
   }
 }
 
+function bartik_page_alter(&$page) {
+    //把搜索栏移到底部.
+
+    dpm($page);
+
+//    $page['footer']['search_form'] = $page['sidebar_first']['search_form'];
+//    unset($page['sidebar_first']['search_form']);
+//    // 去掉"powered by Drupal"区域显示
+//    unset($page['footer']['system_powered-by']);
+}
+
+
 /**
  * Override or insert variables into the page template.
  */
@@ -112,7 +124,13 @@ function bartik_preprocess_node(&$variables) {
   if ($variables['view_mode'] == 'full' && node_is_page($variables['node'])) {
     $variables['classes_array'][] = 'node-full';
   }
+
+
 }
+//function bartik_preprocess_hello(&$vars){
+//print_r("bartik_preprocess_hello");exit;
+//}
+
 
 /**
  * Override or insert variables into the block template.

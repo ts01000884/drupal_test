@@ -9,7 +9,7 @@ function event_list_plus_form_alter(&$form, $form_state, $form_id)
 
 
 
-        $form['event_subject']['#element_validate'] = array('_input_no_number');
+//        $form['event_subject']['#element_validate'] = array('_input_no_number');
         $form['event_title']['#element_validate'] = array('_input_no_number');
 
 
@@ -19,10 +19,10 @@ function event_list_plus_form_alter(&$form, $form_state, $form_id)
             'wrapper' => 'event-list-form-wrapper',
         );
 
-        $form['event_subject']['#ajax'] = array(
-            'callback' => 'event_list_form_callback',
-            'wrapper' => 'event-list-form-wrapper',
-        );
+//        $form['event_subject']['#ajax'] = array(
+//            'callback' => 'event_list_form_callback',
+//            'wrapper' => 'event-list-form-wrapper',
+//        );
 
 
 
