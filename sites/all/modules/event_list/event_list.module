@@ -50,7 +50,7 @@ return array(
     'event_list' => array(
 
         'template' => 'event_list',
-        'arguments' => array('event_node_list' => NULL, 'title' => NULL),
+        'arguments' => array('event_node_list' => NULL, 'title' => NULL,'event_date'=>NULL),
         'variables' => array(),
 
         'path' => $path,

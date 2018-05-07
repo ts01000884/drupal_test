@@ -40,7 +40,7 @@ function bartik_page_alter(&$page) {
     //把搜索栏移到底部.
 
     dpm($page);
-
+//
 //    $page['footer']['search_form'] = $page['sidebar_first']['search_form'];
 //    unset($page['sidebar_first']['search_form']);
 //    // 去掉"powered by Drupal"区域显示
