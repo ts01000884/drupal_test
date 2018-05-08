@@ -39,7 +39,7 @@ function bartik_process_html(&$variables) {
 function bartik_page_alter(&$page) {
     //把搜索栏移到底部.
 
-    dpm($page);
+//    dpm($page);
 //
 //    $page['footer']['search_form'] = $page['sidebar_first']['search_form'];
 //    unset($page['sidebar_first']['search_form']);

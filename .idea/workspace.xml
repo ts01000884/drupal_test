@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="198a7431-9527-43e4-a744-f34b7abe53c8" name="預設" comment="">
-      <change beforePath="$PROJECT_DIR$/sites/all/modules/event_list/event_list.module" beforeDir="false" afterPath="$PROJECT_DIR$/sites/all/modules/event_list/event_list.module" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sites/all/modules/event_list/inc/event_list_page.inc" beforeDir="false" afterPath="$PROJECT_DIR$/sites/all/modules/event_list/inc/event_list_page.inc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sites/all/modules/event_list/tpl/event_list.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/sites/all/modules/event_list/tpl/event_list.tpl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/bartik/template.php" beforeDir="false" afterPath="$PROJECT_DIR$/themes/bartik/template.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,20 +44,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="template.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="template.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/themes/bartik/template.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1343">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="399">
+              <caret line="42" column="2" lean-forward="true" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="event_list.tpl.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="event_list.tpl.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list/tpl/event_list.tpl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="19" lean-forward="true" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+            <state relative-caret-position="270">
+              <caret line="18" column="6" lean-forward="true" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -117,8 +114,8 @@
         <option value="$PROJECT_DIR$/sites/all/themes/event_list/template.php" />
         <option value="$PROJECT_DIR$/sites/all/modules/event_list/event_list.module" />
         <option value="$PROJECT_DIR$/sites/all/modules/event_list/tpl/event_list.tpl.php" />
-        <option value="$PROJECT_DIR$/themes/bartik/template.php" />
         <option value="$PROJECT_DIR$/sites/all/modules/event_list/inc/event_list_page.inc" />
+        <option value="$PROJECT_DIR$/themes/bartik/template.php" />
       </list>
     </option>
   </component>
@@ -308,12 +305,12 @@
       <option name="presentableId" value="Default" />
       <updated>1524710065996</updated>
       <workItem from="1524710067534" duration="95684000" />
-      <workItem from="1525665290165" duration="12691000" />
+      <workItem from="1525665290165" duration="13557000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108375000" />
+    <option name="totallyTimeSpent" value="109241000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
@@ -523,13 +520,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list_plus/event_list_plus.module">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-354">
-          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/themes/bartik/templates/page.tpl.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
@@ -537,13 +527,6 @@
           <folding>
             <element signature="e#7#4148#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/bartik/template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1343">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
         </state>
       </provider>
     </entry>
@@ -560,8 +543,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list/tpl/event_list.tpl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="19" lean-forward="true" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+        <state relative-caret-position="270">
+          <caret line="18" column="6" lean-forward="true" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sites/all/modules/event_list_plus/event_list_plus.module">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-354">
+          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/bartik/template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="42" column="2" lean-forward="true" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="2" />
         </state>
       </provider>
     </entry>
