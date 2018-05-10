@@ -50,10 +50,6 @@ function event_list(){
 
     event_list_event_node_object($nodes,$event_node);
 
-
-
-
-
     $output =theme('event_list',array('event_node_list'=> $nodes,'title' => $element,'event_node'=>$event_node));//定义模板waterfall_content
 
     return $output;

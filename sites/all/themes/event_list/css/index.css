@@ -290,6 +290,13 @@ body {
     text-decoration: none;
     font-weight: 700
 }
+.activity_title {
+    font-size: 24px;
+    color: #e35b5b;
+    line-height: 30px;
+    text-decoration: none;
+    font-weight: 700;
+}
 
 .lastest_event_container .lastest_event_item .event_content .activity_title:hover {
     text-decoration: underline

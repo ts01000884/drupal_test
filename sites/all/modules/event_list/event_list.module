@@ -41,30 +41,31 @@ function template_preprocess_hello(&$variables, $hook){
 /**
  * Implements hook_theme().
  */
-function event_list_theme() {
+function event_list_theme()
+{
     $path = drupal_get_path('module', 'event_list') . '/tpl';
     dpm('有載入event_list_theme！');
 
-return array(
+    return array(
 
-    'event_list' => array(
+        'event_list' => array(
 
-        'template' => 'event_list',
-        'arguments' => array('event_node_list' => NULL, 'title' => NULL,'event_date'=>NULL),
-        'variables' => array(),
+            'template' => 'event_list',
+            'arguments' => array('event_node_list' => NULL, 'title' => NULL, 'event_date' => NULL),
+            'variables' => array(),
 
-        'path' => $path,
+            'path' => $path,
 
-    ),
-    'hello' => array(
-        'variables' => array(
-            'a' => NULL,
-            'b' => NULL,
-            'c' => NULL,
         ),
-    ),
+        'hello' => array(
+            'variables' => array(
+                'a' => NULL,
+                'b' => NULL,
+                'c' => NULL,
+            ),
+        ),
 
-);
+    );
 }
 //
 ///**
