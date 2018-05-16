@@ -1,0 +1,7 @@
+name = cat_data
+description = 練習schema用
+core = 7.x
+version = "7.x-1.0"
+package = Hamiplay
+files[] = cat_schema.module
+datestamp = "1804251435"

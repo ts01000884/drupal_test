@@ -6,3 +6,4 @@ files[] = event_list.module
 stylesheets[all][] = css/main.css
 stylesheets[all][] = css/index.css
 datestamp = "1804251435"
+description= 活動列表基礎

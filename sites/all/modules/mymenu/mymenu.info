@@ -3,3 +3,4 @@ package = Hamiplay
 version = "7.x-1.0"
 core = 7.x
 datestamp = "1804251435"
+description = 密特form用

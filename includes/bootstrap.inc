@@ -1219,7 +1219,6 @@ function variable_initialize($conf = array()) {
  */
 function variable_get($name, $default = NULL) {
   global $conf;
-
   return isset($conf[$name]) ? $conf[$name] : $default;
 }
 

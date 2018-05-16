@@ -1,0 +1,7 @@
+name = cat_manger
+description = 練習admin介面設計用
+core = 7.x
+version = "7.x-1.0"
+package = Hamiplay
+files[] = cat_manger.module
+datestamp = "1804251435"

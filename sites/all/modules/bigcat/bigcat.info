@@ -1,6 +1,0 @@
-name = bigcat
-description = "練習用"
-package = Hamiplay
-version = "7.x-1.0"
-core = 7.x
-datestamp = "1804251435"
