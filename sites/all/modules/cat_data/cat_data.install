@@ -1,0 +1,108 @@
+<?php
+
+function cat_data_schema()
+{
+    $schema['cat_data'] = array(
+        'description' => 'The base table for cat_data.',
+        'fields' => array(
+            'aid' => array(
+                'description' => 'The primary identifier for an cat_data.',
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+            ),
+            'vid' => array(
+                'description' =>
+                    'The current {cat_data_revision}.vid version identifier.',
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'default' => 0,
+            ),
+            'type' => array(
+                'description' => 'The {cat_data_type} of this cat_data.',
+                'type' => 'varchar',
+                'length' => 32,
+                'not null' => TRUE,
+                'default' => '',
+            ),
+            'title' => array(
+                'description' => 'The title of this cat_data.',
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => TRUE,
+                'default' => '',
+            ),
+            'created' => array(
+                'description' =>
+                    'The Unix timestamp when the cat_data was created.',
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+            ),
+            'changed' => array(
+                'description' =>
+                    'The Unix timestamp when the cat_data was most recently saved.',
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+            ),
+        ),
+        'unique keys' => array(
+            'aid_vid' => array('aid', 'vid'),
+            'aid' => array('aid')
+        ),
+        'primary key' => array('aid'),
+    );
+    $schema['cat_data_revision'] = array(
+        'description' =>
+            'Stores information about each saved version of an {cat_data}.',
+        'fields' => array(
+            'aid' => array(
+                'description' => 'The {cat_data} this version belongs to.',
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'default' => 0,
+            ),
+            'vid' => array(
+                'description' => 'The primary identifier for this version.',
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+            ),
+            'title' => array(
+                'description' => 'The title of this version.',
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => TRUE,
+                'default' => '',
+            ),
+            'created' => array(
+                'description' =>
+                    'The Unix timestamp when the cat_data was created.',
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+            ),
+        ),
+        'indexes' => array(
+            'aid' => array('aid'),
+        ),
+        'primary key' => array('vid'),
+        'foreign keys' => array(
+            'cat_data' => array(
+                'table' => 'cat_data',
+                'columns' => array(
+                    'aid' => 'aid',
+                ),
+            ), ),
+    );
+
+
+
+
+    return $schema;
+}
+
+?>

@@ -1,0 +1,285 @@
+<?php // $Id$
+
+/**
+ * Implements hook_entity_info().
+ */
+function cat_data_entity_info()
+{
+    $return['cat_data'] = array(
+        'label' => t('cat_data'),
+        'controller class' => 'cat_dataController',
+        'base table' => 'cat_data',
+        'revision table' => 'cat_data_revision',
+        'uri callback' => 'cat_data_uri',
+        'fieldable' => TRUE,
+        'entity keys' => array(
+            'id' => 'aid',
+            'revision' => 'vid',
+            'bundle' => 'type',
+            'label' => 'title',
+        ),
+        'bundle keys' => array(
+            'bundle' => 'type',
+        ),
+        'static cache' => TRUE,
+        'bundles' => array(),
+        'view modes' => array(
+            'full' => array(
+                'label' => t('Full content'),
+                'custom settings' => FALSE,
+            ),
+            'teaser' => array(
+                'label' => t('Teaser'),
+                'custom settings' => FALSE,
+            ),
+        ),);
+    foreach (cat_data_types() as $type => $info) {
+        $return['cat_data']['bundles'][$type] = array(
+            'label' => $info->name,
+            'admin' => array(
+                'path' => 'admin/structure/cat_datas/manage/%cat_data_type',
+                'real path' => 'admin/structure/cat_datas/manage/' .
+                    str_replace('_', '-', $type),
+                'bundle argument' => 4,
+                'access arguments' => array('administer cat_datas'),
+            ),
+        );
+    }
+    return $return;
+}
+
+
+function cat_data_menu()
+{
+    $items['admin/structure/cat_datas'] = array(
+        'title' => 'Manage cat_datas',
+        'description' => 'Manage cat_datas.',
+        'page callback' => 'cat_data_overview_types',
+        'access arguments' => array('administer cat_datas'),
+    );
+    $items['admin/structure/cat_datas/manage/%cat_data_type'] = array(
+        'title' => 'View cat_data type',
+        'title callback' => 'cat_data_type_page_title',
+        'title arguments' => array(4),
+        'page callback' => 'cat_data_information',
+        'page arguments' => array(4),
+        'access arguments' => array('administer cat_datas'),
+    );
+    $items['admin/structure/cat_datas/manage/%cat_data_type/view'] =
+        array(
+            'title' => 'View',
+            'type' => MENU_DEFAULT_LOCAL_TASK,
+        );
+    $items['cat_data/add'] = array(
+        'title' => 'Add new cat_data',
+        'page callback' => 'cat_data_add_page',
+        'access arguments' => array('create cat_datas'),
+        'weight' => 1,
+        'menu_name' => 'management',
+        'file' => 'cat_data.pages.inc',
+    );
+    foreach (cat_data_types() as $type) {
+        $type_url_str = str_replace('_', '-', $type->type);
+        $items['cat_data/add/' . $type_url_str] = array(
+            'title' => $type->name,
+            'title callback' => 'check_plain',
+            'page callback' => 'cat_data_add',
+            'page arguments' => array(2),
+            'access arguments' => array('create cat_data'),
+            'description' => $type->description,
+        ); }
+
+
+    return $items;
+}
+
+
+
+
+function cat_data_overview_types()
+{
+    foreach (cat_data_types() as $type => $info) {
+        $type_url_str = str_replace('_', '-', $type);
+        $label = t('View @type', array('@type' => $info->name));
+        $items[] = l($label, 'admin/structure/cat_datas/manage/' .
+            $type_url_str);
+    }
+    return theme('item_list', array('items' => $items));
+}
+
+function cat_data_forms()
+{
+    $forms = array();
+    if ($types = cat_data_types()) {
+        foreach (array_keys($types) as $type) {
+            $forms[$type . '_cat_data_form']['callback'] = 'cat_data_form';
+        }
+    }
+    return $forms;
+}
+
+function cat_data_form($form, &$form_state, $cat_data) {
+// Set the id to identify this as an cat_data edit form.
+$form['#id'] = 'cat_data-form';
+// Save the cat_data for later, in case we need it.
+$form['#cat_data'] = $cat_data;
+$form_state['cat_data'] = $cat_data;
+// Common fields. We don't have many.
+$form['title'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Title'),
+    '#default_value' => $cat_data->title,
+    '#weight' => -5,
+    '#required' => TRUE,
+);
+$form['revision'] = array(
+    '#access' => user_access('administer cat_datas'),
+    '#type' => 'checkbox',
+    '#title' => t('Create new revision'),
+    '#default_value' => 0,
+);
+// Add the buttons.
+$form['buttons'] = array();
+$form['buttons']['#weight'] = 100;
+$form['buttons']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save'),
+    '#weight' => 5,
+    '#submit' => array('cat_data_form_submit'),
+);
+if (!empty($cat_data->aid)) {
+$form['buttons']['delete'] = array(
+    '#access' => user_access('delete cat_datas'),
+    '#type' => 'submit',
+    '#value' => t('Delete'),
+    '#weight' => 15,
+    '#submit' => array('cat_data_form_delete_submit'),
+);
+}
+    $form['#validate'][] = 'cat_data_form_validate';
+    field_attach_form('cat_data', $cat_data, $form, $form_state);
+    return $form;
+}
+function cat_data_form_validate($form, &$form_state) {
+    $cat_data = $form_state['cat_data'];
+    // Field validation.
+    field_attach_form_validate('cat_data', $cat_data, $form, $form_state);
+}
+
+
+function cat_data_form_submit($form, &$form_state) {
+    global $user;
+    $cat_data = &$form_state['cat_data'];
+    // Set the cat_data's uid if it's being created at this time.
+    if (empty($cat_data->uid)) {
+        $cat_data->uid = $user->uid;
+    }
+    $cat_data->title = $form_state['values']['title'];
+    $cat_data->revision = $form_state['values']['revision'];
+    // Notify field widgets.
+    field_attach_submit('cat_data', $cat_data, $form, $form_state);
+    // Save the cat_data.
+    cat_data_save($cat_data);
+    // Notify the user.
+    drupal_set_message(t('cat_data saved.'));
+    $form_state['redirect'] = 'cat_data/' . $cat_data->aid;
+}
+function cat_data_save($cat_data) {
+    return entity_get_controller('cat_data')->save($cat_data);
+}
+
+
+
+
+
+function saveRevision($cat_data, $uid, $update = FALSE) {
+    // Hold on to the cat_data's original creator_uid but swap
+    // in the revision's creator_uid for the momentary write.
+    $temp_uid = $cat_data->uid;
+    $cat_data->uid = $uid;
+    if ($update) {
+        drupal_write_record('cat_data_revision', $cat_data, 'vid');
+    }
+    else {
+        drupal_write_record('cat_data_revision', $cat_data);
+    }
+    // Reset the order's creator_uid to the original value.
+    $cat_data->uid = $temp_uid;
+}
+
+
+
+
+
+
+
+
+
+
+
+function cat_data_type_page_title($type)
+{
+    return t('Manage @type', array('@type' => $type->name));
+}
+
+function cat_data_information($cat_data_type)
+{
+    return $cat_data_type->name . ': ' . $cat_data_type->description;
+}
+
+
+/**
+ * Implements hook_uri().
+ */
+function cat_data_uri($cat_data)
+{
+    return array(
+        'path' => 'cat_data/' . $cat_data->aid,
+    );
+}
+
+/**
+ * Implements hook_types().
+ */
+function cat_data_types()
+{
+    $types = &drupal_static(__FUNCTION__);
+    if (empty($types)) {
+        $types['painting'] = (object)array(
+            'type' => 'painting',
+            'name' => t('Painting'),
+            'description' => t('A picture made with paint.')
+        );
+        $types['sculpture'] = (object)array(
+            'type' => 'sculpture',
+            'name' => t('Sculpture'),
+            'description' => t('A carving made out of stone or wood.')
+        );
+    }
+    return $types;
+}
+
+function cat_data_type_load($type)
+{
+    $types = cat_data_types();
+    $type = str_replace('-', '_', $type);
+    return isset($types[$type]) ? $types[$type] : FALSE;
+}
+
+function cat_data_add($type) {
+    global $user;
+    $types = cat_data_types();
+    $type = isset($type) ? str_replace('-', '_', $type) : NULL;
+    if (empty($types[$type])) {
+        return MENU_NOT_FOUND;
+    }
+    $cat_data = entity_get_controller('cat_data')->create($type);
+    drupal_set_title(t('Create @name', array('@name' =>
+        $types[$type]->name)), PASS_THROUGH);
+    return drupal_get_form($type . '_cat_data_form', $cat_data);
+}
+
+
+
+
+?>

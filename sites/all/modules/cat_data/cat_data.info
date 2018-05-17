@@ -3,5 +3,6 @@ description = 練習schema用
 core = 7.x
 version = "7.x-1.0"
 package = Hamiplay
-files[] = cat_schema.module
+files[] = cat_data.module
+files[] = cat_data.controller.inc
 datestamp = "1804251435"
