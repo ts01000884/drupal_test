@@ -91,6 +91,22 @@ class Cat_dataController extends DrupalDefaultEntityController
         }
     }
 
+
+    function saveRevision($cat_data, $uid, $update = FALSE) {
+        // Hold on to the cat_data's original creator_uid but swap
+        // in the revision's creator_uid for the momentary write.
+        $temp_uid = $cat_data->uid;
+        $cat_data->uid = $uid;
+        if ($update) {
+            drupal_write_record('cat_data_revision', $cat_data, 'vid');
+        }
+        else {
+            drupal_write_record('cat_data_revision', $cat_data);
+        }
+        // Reset the order's creator_uid to the original value.
+        $cat_data->uid = $temp_uid;
+    }
+
 }
 
 ?>
