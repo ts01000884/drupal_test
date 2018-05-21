@@ -1,0 +1,6 @@
+name = Dimensions field
+   description = Field API 練習
+   package = Hamiplay
+   core = 7.x
+   version = "7.x-1.0"
+   files[] = dimfield.module

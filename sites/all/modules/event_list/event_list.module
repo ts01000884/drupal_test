@@ -5,6 +5,7 @@ function event_list_menu() {
         'title' => '活動登記申請',
         'page callback' => 'drupal_get_form',
         'page arguments' => array('event_list_form'),
+        'access'=>user_access('administer menu'),
         'access callback' => TRUE,
         'type' => MENU_NORMAL_ITEM,   //MENU_NORMAL_ITEM  MENU_CALLBACK
     );
